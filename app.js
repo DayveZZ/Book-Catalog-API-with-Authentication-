@@ -15,7 +15,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Working");
 });
-import userRoutes from "./src/routes/users.route.js";
+import userRoutes from "./src/routes/userRoutes.js";
 app.use("/api/v1/users", userRoutes);
 
 const Port = process.env.PORT || 3000;
