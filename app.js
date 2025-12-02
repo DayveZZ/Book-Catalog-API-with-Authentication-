@@ -1,7 +1,11 @@
 import express from "express";
-import { connectDatabase } from "./src/configs/db.js";
 import dotenv from "dotenv";
 import cors from "cors";
+
+// IMPORTS MUST STAY AT TOP
+import userRoutes from "./src/routes/userRoutes.js";
+import bookRoutes from "./src/routes/bookRoutes.js";
+import { connectDatabase } from "./src/configs/db.js";
 
 dotenv.config();
 
@@ -15,10 +19,12 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Working");
 });
-import userRoutes from "./src/routes/userRoutes.js";
-app.use("/api/v1/users", userRoutes);
+
+// ROUTES
+app.use("/api/users", userRoutes);
+app.use("/api/books", bookRoutes);
 
 const Port = process.env.PORT || 3000;
 app.listen(Port, () => {
-  console.log("Server Running on Port 4000");
+  console.log(`Server Running on Port ${Port}`);
 });

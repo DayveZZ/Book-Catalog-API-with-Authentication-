@@ -22,6 +22,6 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
 });
-const Book = mongoose.model("Books", userSchema);
+const Book = mongoose.model("Book", bookSchema);
 
 export default Book;

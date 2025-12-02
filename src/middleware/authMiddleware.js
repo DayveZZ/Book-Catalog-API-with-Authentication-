@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const authMiddleware = (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader?.startsWith("Bearer ")) {
@@ -11,12 +11,11 @@ export const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Attach decoded user data to request
     req.user = decoded;
-
     next();
   } catch (err) {
     return res.status(403).json({ message: "Invalid token" });
   }
 };
+
+export default authMiddleware;
